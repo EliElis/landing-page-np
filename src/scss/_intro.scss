@@ -1,0 +1,131 @@
+.intro {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  position: relative;
+  @include pxtoem(min-height, 650, $base-size);
+
+  &__info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 25vh;
+    z-index: 1;
+    color: $white;
+
+    &__video {
+      position: absolute;
+      overflow: hidden;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-image: url("../video/video_thumbnail.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        background-color: rgba(#EC2028, .87);
+      }
+
+      video {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &__subtitle {
+    padding-top: 5vh;
+    margin: 0;
+    @include pxtoem(font-size, 24, $base-size);
+    line-height: 1.2;
+  }
+
+  &__form {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 10vh;
+    @include pxtoem(padding-left, 50, $base-size);
+    @include pxtoem(padding-right, 146, $base-size);
+  }
+}
+
+.arrow-next {
+  position: absolute;
+  z-index: 10;
+  @include pxtoem(padding-top, 10, $base-size);
+  @include pxtoem(padding-bottom, 10, $base-size);
+  @include pxtoem(padding-left, 10, $base-size);
+  @include pxtoem(padding-right, 10, $base-size);
+  @include pxtoem(left, 60, $base-size);
+  @include pxtoem(bottom, 30, $base-size);
+
+  svg {
+    @include pxtoem(width, 19, $base-size);
+    @include pxtoem(height, 11, $base-size);
+  }
+}
+
+
+@media screen and (max-width: 1680px) {
+  .intro {
+    &__info {
+      padding-bottom: 128px;
+    }
+
+    &__form {
+      padding: 0 146px 51px 50px;
+    }
+
+    &__subtitle {
+      padding-top: 33px;
+    }
+  }
+  .arrow-next {
+    padding: 10px;
+    left: 65px;
+    bottom: 18px;
+
+    svg {
+      width: 17px;
+      height: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .intro {
+    &__form {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .intro {
+    &__info {
+      &__video {
+        video {
+          display: none;
+        }
+      }
+
+    }
+  }
+}
+

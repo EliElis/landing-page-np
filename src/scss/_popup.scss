@@ -1,0 +1,75 @@
+.success-popup {
+  display: none;
+  opacity: 0;
+  background-color: rgba($white, .95);
+  padding-top: 5%;
+  padding-bottom: 6%;
+
+  &__cross {
+    position: absolute;
+    @include pxtoem(top, 37, $base-size);
+    @include pxtoem(right, 73, $base-size);
+    cursor: pointer;
+
+    svg {
+      @include pxtoemRound(width, 30, $base-size)
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    @include pxtoem(padding-left, 28, $base-size);
+    @include pxtoem(padding-right, 54, $base-size);
+    background-color: $white;
+
+    svg {
+      @include pxtoemRound(width, 56, $base-size);
+    }
+  }
+
+  &__subtitle {
+    @include pxtoem(font-size, 20, $base-size);
+    @include pxtoem(margin-top, 25, $base-size);
+    @include pxtoem(margin-bottom, 50, $base-size);
+  }
+
+  &.visible {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    animation: center;
+    justify-content: center;
+    opacity: 1;
+    z-index: 10;
+  }
+
+  @media screen and (max-width: 1680px) {
+    padding-top: 48px;
+    padding-bottom: 55px;
+    &__cross {
+      top: 37px;
+      right: 74px;
+
+      svg {
+        width: 40px;
+      }
+    }
+    &__inner {
+      max-width: 410px;
+      max-height: 547px;
+      width: 100%;
+    }
+    &__subtitle {
+      margin-top: 14px;
+      margin-bottom: 36px;
+    }
+  }
+}

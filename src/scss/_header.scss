@@ -1,0 +1,257 @@
+.header {
+  display: flex;
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 4.5vh;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+
+    .logo-red {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__nav {
+    display: flex;
+
+    &__ul {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      padding: 0 20px 0 0;
+      margin: 0 auto;
+    }
+
+    &__item {
+      @include pxtoem(margin-right, 5, $base-size);
+      @include pxtoem(margin-left, 5, $base-size);
+      flex-shrink: 0;
+    }
+
+    &__link {
+      display: inline-flex;
+      flex-direction: column;
+      color: $white;
+      text-decoration: none;
+      @include pxtoem(font-size, 14, $base-size);
+      line-height: 1.2;
+      @include pxtoem(padding-right, 5, $base-size);
+      @include pxtoem(padding-left, 5, $base-size);
+      font-weight: 400;
+      transition: font-weight .4s;
+
+      .no-touch & {
+        &:hover {
+          font-weight: 800;
+        }
+
+        &:after {
+          content: attr(data-text) / "";
+          height: 0;
+          visibility: hidden;
+          overflow: hidden;
+          user-select: none;
+          pointer-events: none;
+          font-weight: 800;
+        }
+
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__pdf, &__phone, &__lang {
+    display: inline-flex;
+    align-items: center;
+    @include pxtoem(font-size, 14, $base-size);
+    @include pxtoem(padding-right, 5, $base-size);
+    @include pxtoem(padding-left, 5, $base-size);
+    line-height: 1.2;
+    font-weight: 800;
+    color: $red;
+    text-decoration: none;
+  }
+
+  &__pdf {
+    @include pxtoem(margin-left, 45, $base-size);
+    @include pxtoem(margin-right, 20, $base-size);
+
+    span {
+      border-bottom: 1px solid transparent;
+      transition: border-bottom-color .4s;
+    }
+
+    svg {
+      @include pxtoem(width, 16, $base-size);
+      @include pxtoem(height, 20, $base-size);
+      @include pxtoem(margin-right, 12, $base-size);
+      fill: $red;
+    }
+
+    .no-touch & {
+      &:hover {
+        span {
+          border-bottom-color: $red;
+        }
+      }
+    }
+  }
+
+  &__phone {
+    svg {
+      fill: $red;
+      @include pxtoem(width, 16, $base-size);
+      @include pxtoem(height, 16, $base-size);
+      @include pxtoem(margin-right, 12, $base-size);
+    }
+  }
+
+  &__lang {
+    margin-left: auto;
+  }
+
+  &.fixed {
+    position: fixed;
+    background-color: $white;
+    opacity: 1;
+    transition: opacity .4s;
+    border-bottom: 2px solid #F5F5F5;
+    @include pxtoem(padding-top, 25, $base-size);
+    @include pxtoem(padding-bottom, 15, $base-size);
+
+    .header {
+      &__logo {
+        img {
+          display: none;
+
+          &.logo-red {
+            display: block;
+          }
+        }
+      }
+
+      &__nav {
+        &__link {
+          color: $black;
+        }
+      }
+    }
+  }
+
+  &.opacity {
+    opacity: 0;
+  }
+
+  @media screen and (max-width: 1680px) {
+    padding-top: 38px;
+    &__logo {
+      max-width: 250px;
+    }
+    &__nav {
+      &__ul {
+        margin-left: 0;
+      }
+
+      &__item {
+        margin: 0 5px;
+      }
+
+      &__link {
+        padding: 0 5px;
+      }
+    }
+    &__pdf {
+      margin-left: 45px;
+      margin-right: 20px;
+
+      svg {
+        width: 16px;
+        height: 20px;
+      }
+    }
+    &__phone {
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    &.fixed {
+      padding-top: 30px;
+      padding-bottom: 15px;
+    }
+  }
+  @media screen and (max-width: 1250px) {
+    &.fixed {
+      padding-top: 20px;
+    }
+    &__logo {
+      max-width: 200px;
+    }
+    &__nav {
+      &__ul {
+        display: none;
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    &__logo {
+      min-width: 150px;
+    }
+    &__pdf {
+      display: none;
+    }
+    &__phone, &__lang {
+      font-size: 16px;
+      color: $white;
+
+      svg {
+        fill: $white;
+      }
+    }
+    &.fixed {
+      .header {
+        &__logo {
+          display: none;
+        }
+
+        &__right {
+          padding-top: 0;
+        }
+
+        &__phone, &__lang {
+          color: $red;
+
+          svg {
+            fill: $red;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 576px) {
+    flex-wrap: wrap;
+    &__right {
+      padding-top: 30px;
+    }
+    &__logo {
+      max-width: 270px;
+      width: 100%
+    }
+  }
+}
+
+

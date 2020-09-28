@@ -1,0 +1,416 @@
+.slider {
+  display: flex;
+  overflow: hidden;
+
+  &__left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: $white;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+    z-index: 1;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 90%;
+      background-color: $red;
+      z-index: -1;
+    }
+  }
+
+  &__right {
+    padding-top: 4vh;
+
+    &__inner {
+      position: relative;
+      @include pxtoem(height, 280, $base-size);
+    }
+
+    &__arrows {
+      display: none;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    @include pxtoem(padding-left, 50, $base-size);
+    background-color: $white;
+    transition: opacity .4s;
+
+    &.active {
+      opacity: 1;
+      transition: opacity .8s;
+    }
+
+    &.prev-text {
+      opacity: 0;
+    }
+  }
+
+  &__text {
+    margin-bottom: 0;
+    @include pxtoem(margin-top, 36, $base-size);
+  }
+
+  &__arrows {
+    margin-right: 11%;
+    @include pxtoem(padding-right, 40, $base-size);
+    @include pxtoem(padding-top, 40, $base-size);
+
+    &__prev, &__next {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      @include pxtoem(width, 36, $base-size);
+
+      svg {
+        position: relative;
+        left: 0;
+        transition: left .4s;
+        @include pxtoem(height, 16, $base-size);
+      }
+    }
+
+    &__prev {
+      @include pxtoem(margin-right, 30, $base-size);
+    }
+
+    .no-touch & {
+      &__prev {
+        &:hover {
+          svg {
+            left: -10px;
+          }
+        }
+      }
+
+      &__next {
+        &:hover {
+          svg {
+            left: 10px;
+          }
+        }
+      }
+    }
+
+  }
+
+  &__bullets {
+    display: flex;
+    @include pxtoem(padding-top, 40, $base-size);
+    @include pxtoem(padding-left, 50, $base-size);
+
+    &__item {
+      display: flex;
+      position: relative;
+      @include pxtoem(margin-right, 45, $base-size);
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .lines, .filled {
+        flex-shrink: 0;
+        @include pxtoemRound(height, 30, $base-size);
+        width: auto;
+        fill: $red;
+        transition: opacity .2s;
+      }
+
+      .lines {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 0;
+      }
+
+      &.active {
+        .filled {
+          opacity: 0;
+        }
+
+        .lines {
+          opacity: 1;
+        }
+
+      }
+    }
+  }
+
+  .slide {
+    display: none;
+
+    &__img {
+      display: flex;
+      align-items: center;
+      position: relative;
+      animation-delay: .3s;
+      animation: nextSlide .8s;
+      @include pxtoem(height, 280, $base-size);
+
+      img {
+        @include pxtoem(max-height, 280, $base-size);
+        height: 100%;
+      }
+    }
+
+    &.prev-slide {
+      position: absolute;
+      top: 0;
+      display: block;
+      padding-top: 4vh;
+
+      .slide__img {
+        animation: prevSlide .8s;
+        right: 100vw;
+        opacity: 1;
+      }
+    }
+
+    &.active {
+      display: block;
+
+      .slide__img {
+        right: 0;
+
+      }
+
+    }
+  }
+
+  @keyframes prevSlide {
+    from {
+      right: 0;
+    }
+    to {
+      right: 100vw;
+    }
+  }
+
+  @keyframes nextSlide {
+    from {
+      right: 100vw;
+    }
+    to {
+      right: 0;
+    }
+  }
+
+  @media screen and (max-width: 1680px) {
+    &__left {
+      padding-top: 35px;
+      padding-bottom: 27px;
+
+      &:before {
+        width: calc(100% - 80px);
+      }
+    }
+    &__right {
+      padding-top: 35px;
+
+      &__inner {
+        height: 281px;
+      }
+    }
+    &__content {
+      width: 100%;
+      padding-left: 50px;
+      max-width: 437px;
+    }
+    .slide {
+      &__img {
+        height: 281px;
+      }
+
+      &.prev-slide {
+        padding-top: 35px;
+      }
+    }
+    &__arrows {
+      margin-right: 0;
+      padding: 40px 125px 0 0;
+
+      &__next, &__prev {
+        svg {
+          height: 19px;
+        }
+      }
+    }
+    &__bullets {
+      padding: 40px 0 0 50px;
+
+      &__item {
+        margin-right: 45px;
+
+        svg {
+          height: 31px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    &__bullets {
+      display: none;
+    }
+    &__right {
+      &__inner {
+        height: 250px;
+      }
+    }
+    &__content {
+      padding-left: 0;
+    }
+    .slide {
+      &__img {
+        height: 250px;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    &__left {
+      width: 50%;
+      padding-right: 30px;
+    }
+
+    &__arrows {
+      padding: 30px 70px 0 0;
+    }
+    &__right {
+      padding-right: 50px;
+
+      &__inner {
+        height: 170px;
+      }
+
+    }
+    .slide {
+      &__img {
+        height: 170px;
+
+        img {
+          height: 100%;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 576px) {
+    &__left {
+      width: 100%;
+    }
+    flex-wrap: wrap;
+    &__arrows {
+      display: none;
+    }
+    &__right {
+      padding: 40px 20px;
+
+      &__inner {
+        height: 120px;
+        position: relative;
+      }
+
+      &__arrows {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+        width: 30px;
+
+        svg {
+          height: 16px;
+          stroke: $black;
+          fill: $black;
+        }
+
+        &__next {
+          right: 0;
+        }
+
+        &__prev {
+          left: 0;
+        }
+      }
+    }
+    &__left {
+      align-items: center;
+
+      &:before {
+        width: 50%;
+      }
+    }
+    &__content {
+      padding: 0 40px;
+      justify-content: flex-start;
+      text-align: center;
+      left: auto;
+      opacity: 1;
+      width: 100%;
+      max-width: unset;
+      right: -100vw;
+
+      &.active {
+        animation: nextSlide .4s;
+        right: 0;
+      }
+
+      &.prev-text {
+        animation: prevSlide .4s;
+        right: 100vw;
+      }
+    }
+    &__text {
+      margin: 16px 0 0;
+    }
+    .slide {
+      width: 100%;
+
+      &__img {
+        max-height: unset;
+        min-width: 154px;
+        width: 60%;
+        height: 48vw;
+        margin: 0 auto;
+
+        img {
+          width: 100%;
+          height: auto;
+          max-height: unset;
+        }
+      }
+
+      &.prev-slide {
+        padding: 35px 24px 27px 22px;
+      }
+    }
+
+    @keyframes nextSlide {
+      from {
+        right: -100vw;
+      }
+      to {
+        right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  width: 100%;
+  font-family: $Helvetica;
+  font-weight: 400;
+  @include fluid-type(1680px, 5000px, 18px, 66px);
+  color: $black;
+}
+
+.container {
+  @include pxtoem(padding-left, 110, $base-size);
+  @include pxtoem(padding-right, 110, $base-size);
+}
+
+.container-left {
+  width: 62.6%;
+  @include pxtoem(padding-left, 70, $base-size);
+}
+
+.container-right {
+  width: 37.4%;
+  @include pxtoem(padding-right, 70, $base-size);
+}
+
+.title {
+  padding-top: 16vh;
+  padding-bottom: 4vh;
+  text-align: center;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.subtitle {
+  @include pxtoem(font-size, 24, $base-size);
+  line-height: 1.5;
+  text-align: center;
+  width: 85%;
+  margin: 0 auto;
+  padding-bottom: 8vh;
+}
+
+h1, h2, h3, h4, .h4 {
+  line-height: 1;
+  margin: 0;
+  font-weight: 800;
+}
+
+h1 {
+  @include pxtoem(font-size, 100, $base-size);
+}
+
+h3 {
+  @include pxtoem(font-size, 36, $base-size);
+}
+
+h4, .h4 {
+  @include pxtoem(font-size, 24, $base-size);
+}
+
+a, button, input[type='submit'] {
+  cursor: pointer;
+}
+
+.placeholder {
+  height: 100vh;
+}
+
+@media screen and (max-width: 1680px) {
+  body {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 105px
+  }
+
+  .container-left {
+    padding-left: 71px;
+  }
+
+  .container-right {
+    padding-right: 74px;
+  }
+  .container {
+    padding-left: 110px;
+    padding-right: 110px;
+  }
+
+  .title {
+    padding: 107px 0 29px;
+    max-width: 731px;
+  }
+  .subtitle {
+    padding-bottom: 63px;
+    width: 100%;
+    max-width: 1012px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  h1 {
+    font-size: 72px;
+  }
+  .container-left {
+    width: 55%;
+  }
+  .container-right {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+  .container-right, .container-left {
+    width: 100%;
+  }
+  .container-left, .container {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  h1 {
+    font-size: 60px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h4, .h4 {
+    font-size: 16px;
+  }
+
+  .title {
+    max-width: 75%;
+    padding: 75px 0 19px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .container-left, .container-right, .container {
+    padding-left: 22px;
+    padding-right: 24px;
+  }
+  h1 {
+    @include pxtoem(font-size, 42, $base-size);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

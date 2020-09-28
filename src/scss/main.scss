@@ -1,0 +1,12 @@
+@import './node_modules/normalize-scss/sass/normalize.scss';
+
+@include normalize();
+@import 'helpers/fonts';
+@import 'helpers/variables';
+@import 'helpers/mixins';
+@import 'general';
+@import 'header';
+@import 'intro';
+@import 'form';
+@import 'slider';
+@import 'popup';

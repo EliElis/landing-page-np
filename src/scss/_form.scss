@@ -1,0 +1,141 @@
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@-webkit-keyframes autofill {
+  to {
+    color: inherit;
+    background: $white;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: $Helvetica;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+
+  &__group {
+    position: relative;
+    width: 100%;
+  }
+
+  &__title {
+    padding-bottom: 5vh;
+  }
+
+  &__label {
+    display: flex;
+    @include pxtoem(margin-bottom, 5, $base-size);
+    @include pxtoem(font-size, 14, $base-size);
+    line-height: 1.2;
+  }
+
+  &__input {
+    display: flex;
+    width: 100%;
+    @include pxtoem(font-size, 14, $base-size);
+    line-height: 1.2;
+    background-color: transparent;
+    @include pxtoem(padding-top, 10, $base-size);
+    @include pxtoem(padding-bottom, 10, $base-size);
+    @include pxtoem(margin-bottom, 30, $base-size);
+    border: 0;
+    border-bottom: 2px solid $gray;
+
+    &::-webkit-input-placeholder {
+      color: $gray;
+    }
+
+    &::-moz-placeholder {
+      color: $gray;
+    }
+
+    &:-ms-input-placeholder {
+      color: $gray;
+    }
+
+    &:-moz-placeholder {
+      color: $gray;
+    }
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    min-height: 47px;
+    background-color: $red;
+    color: $white;
+    border: 0;
+    border-radius: 2%;
+    outline: none;
+    box-shadow: none;
+    font-weight: 800;
+    line-height: 1;
+    @include pxtoem(margin-top, 10, $base-size);
+    @include pxtoem(padding-top, 15, $base-size);
+    @include pxtoem(padding-bottom, 15, $base-size);
+    @include pxtoem(padding-left, 30, $base-size);
+    @include pxtoem(padding-right, 30, $base-size);
+  }
+
+  .error-message {
+    display: none;
+    position: absolute;
+    @include pxtoem(bottom, 10, $base-size);
+    left: 0;
+    color: $red;
+    opacity: 0;
+    @include pxtoem(font-size, 12, $base-size);
+
+    &.visible {
+      display: block;
+      opacity: 1;
+      animation: fadeIn .4s;
+    }
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .form {
+    max-width: 314px;
+    width: 100%;
+
+    &__title {
+      padding-bottom: 40px;
+    }
+
+    &__label {
+      margin-bottom: 0;
+    }
+
+    &__input {
+      padding: 6px 0;
+      margin-bottom: 25px;
+      border-bottom-width: 1px;
+    }
+
+    &__btn {
+      border-radius: 3px;
+      height: 47px;
+      padding: 10px 31px;
+    }
+  }
+}
